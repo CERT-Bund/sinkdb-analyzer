@@ -17,7 +17,9 @@ class SinkDBAnalyzer(Analyzer):
         self.data = '.'.join(self.data)
 
     def dig(self, ip):
-        proc = subprocess.Popen(['dig', '+short', '{}.{}.sinkdb-api.abuse.ch'.format(ip, self.apikey)], stdout=subprocess.PIPE)
+        proc = subprocess.Popen(['dig', '+short', '{}.{}.sinkdb-api.abuse.ch'.format(ip, self.apikey)],
+                                stdout=subprocess.PIPE,
+                                stderr=subprocess.PIPE)
         out, err = proc.communicate()
         out = out.decode('utf-8').strip('\n')
 
